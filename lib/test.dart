@@ -87,57 +87,59 @@ class _MyHomePageState extends State<MyHomePage> {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight:FontWeight.bold, height: 5, fontSize: 10),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Large'),
-                const SizedBox(width: 16),
-                // An example of the large floating action button.
-  
-                  FloatingActionButton.extended( 
+            SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Large'),
+                  const SizedBox(width: 16),
+                  // An example of the large floating action button.
+
+                    FloatingActionButton.extended(
         onPressed: () {
           imagePickerModal(context, onCameraTap: () {
-            log("Camera");
-            pickImage(source: ImageSource.camera).then((value) {
-              if (value != '') {
-                imageCropperView(value, context).then((value) {
-                  if (value != '') {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (_) => RecognizePage(
-                          path: value,
+              log("Camera");
+              pickImage(source: ImageSource.camera).then((value) {
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => RecognizePage(
+                            path: value,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                });
-              }
-            });
+                      );
+                    }
+                  });
+                }
+              });
           }, onGalleryTap: () {
-            log("Gallery");
-            pickImage(source: ImageSource.gallery).then((value) {
-              if (value != '') {
-                imageCropperView(value, context).then((value) {
-                  if (value != '') {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (_) => RecognizePage(
-                          path: value,
+              log("Gallery");
+              pickImage(source: ImageSource.gallery).then((value) {
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => RecognizePage(
+                            path: value,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                });
-              }
-            });
+                      );
+                    }
+                  });
+                }
+              });
           });
         },
         tooltip: 'select either option',
         label: Text("Recognize Text"),
       ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
